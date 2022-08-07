@@ -20,7 +20,6 @@ function onInputListener(e) {
         cleanerCardCountry();
         return;
     } else {
-    // console.log(name);
         fetchCountries(name)
         .then(sarchAnswer)
         .catch(error => {
@@ -45,6 +44,7 @@ function largeSarchResult(array) {
     cleanerCardCountry();
         return;}
 
+// Видаляють список і картку країни-----------
 function cleanerListCountry() {
     list.innerHTML = "";
 }
@@ -52,13 +52,14 @@ function cleanerListCountry() {
 function cleanerCardCountry() {
     card.innerHTML = "";
 }
+// -------------------------------------------
 
 // Створює картку країни ---------------------------------------
 function createCountryCard(array) {
-    // console.log(array[0]);
     const countryInfo = array[0];
     const { flag, name, capital, population, languages, } = countryInfo;
-    return `<div> <img src="${flag}" alt="Country flag" width="60"><h2>${name}</h2>
+    return `<div> 
+    <div class="country-name"><img class="country-flag"src="${flag}" alt="Country flag" width="30"><h2>${name}</h2></div>
         <ul class="countries_atributes">
         <li>Capital: ${capital}</li>
         <li>Population: ${population} </li>
@@ -67,8 +68,7 @@ function createCountryCard(array) {
             return languageItem;
             }).join(", ")}</li >
         </ul>
-        </div>
-`
+        </div>`
 };
 
 function insertCountryCard(array) {
@@ -79,10 +79,10 @@ function insertCountryCard(array) {
 // --------------------------------------------------------
 
 
-// Создает рахметку списка поиска -----------
+// Создает разметку списка поиска -----------
 function createSarchItem(item) {
     return `
-    <img src="${item.flag}" alt="Country flag" width="30"><li>${item.name}</li>`;
+    <li class="country-item"><img class="country-flag" src="${item.flag}" alt="Country flag" width="30"><span class="item-name">${item.name}</span></li>`;
 }
 
 function createSarchList(array) {
