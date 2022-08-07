@@ -21,7 +21,7 @@ body {
 
 .country-list {
   list-style: none;
-  /* display: block; */
+  padding-left: 15px;
 }
 
 .country-item {
@@ -34,18 +34,17 @@ font-size: 20px;
 .country-flag {
   margin-right: 10px;
 }
-.item-name {
-  
-}
-
-.country-info {
-
-}
 
 .country-name {
   display: flex;
+  padding-left: 15px;
+  margin-bottom: 20px;
 }
 
-.countries_atributes {
+.countries-param {
+margin-bottom: 10px;
+}
 
+.param {
+  font-weight: 700;
 }

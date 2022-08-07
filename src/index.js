@@ -59,11 +59,11 @@ function createCountryCard(array) {
     const countryInfo = array[0];
     const { flag, name, capital, population, languages, } = countryInfo;
     return `<div> 
-    <div class="country-name"><img class="country-flag"src="${flag}" alt="Country flag" width="30"><h2>${name}</h2></div>
-        <ul class="countries_atributes">
-        <li>Capital: ${capital}</li>
-        <li>Population: ${population} </li>
-        <li>Languages: ${languages.map(language => {
+    <h2 class="country-name"><img class="country-flag"src="${flag}" alt="Country flag" width="40">${name}</h2>
+        <ul class="country-list ">
+        <li class="countries-param"><span class="param">Capital:</span> ${capital}</li>
+        <li class="countries-param"><span class="param">Population:</span> ${population}</li>
+        <li class="countries-param"><span class="param">Languages:</span> ${languages.map(language => {
             const languageItem = language.name;
             return languageItem;
             }).join(", ")}</li >
@@ -82,7 +82,7 @@ function insertCountryCard(array) {
 // Создает разметку списка поиска -----------
 function createSarchItem(item) {
     return `
-    <li class="country-item"><img class="country-flag" src="${item.flag}" alt="Country flag" width="30"><span class="item-name">${item.name}</span></li>`;
+    <li class="country-item"><img class="country-flag" src="${item.flag}" alt="Country flag" width="30"><span>${item.name}</span></li>`;
 }
 
 function createSarchList(array) {
