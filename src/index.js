@@ -18,6 +18,7 @@ function onInputListener(e) {
         return;
     } else {
         fetchCountries(name)
+        .then(response => response.json())
         .then(sarchAnswer)
         .catch(error => {
             console.log(error);
