@@ -4,7 +4,6 @@ import Notiflix from 'notiflix';
 import { fetchCountries } from './fetchCountries';
 
 const DEBOUNCE_DELAY = 300;
-// let name;
 
 const input = document.querySelector('#search-box');
 let list = document.querySelector('.country-list');
@@ -16,52 +15,38 @@ input.addEventListener('input', debounce(onInputListener, DEBOUNCE_DELAY));
 function onInputListener(e) {
     const name = e.target.value.trim();
     if (name === "") {
-        // cleanerListCountry();
-        // cleanerCardCountry();
         return;
     } else {
         fetchCountries(name)
         .then(sarchAnswer)
         .catch(error => {
-            notFaund(error);
+            console.log(error);
         });
 }
 }
 
 function sarchAnswer(array) {
     cleanerCountryResult();
-    // if (array.length >= 10) {
-    //     largeSarchResult(array);
-    // } else
-        if (array.length >= 2 && array.length <= 10) {
+    if (array.length >= 10) {
+        largeSarchResult();
+    } else if (array.length >= 2 && array.length <= 10) {
             insertList(array);
-        } else 
-            if (array.length === 1) {
-            insertCountryCard(array);
-        }
-     else {
-        largeSarchResult(array);
+    } else if (array.length === 1) {
+        insertCountryCard(array);
+    } else {
+        notFound();
     }
 }      
 
 function largeSarchResult() {
     Notiflix.Notify.info('Too many matches found. Please enter a more specific name.');
-    // cleanerListCountry();
-    // cleanerCardCountry();
         return;}
 
-// Видаляють список і картку країни-----------
 function cleanerCountryResult() {
     list.innerHTML = "";
     card.innerHTML = "";
 }
 
-// function cleanerCardCountry() {
-//     card.innerHTML = "";
-// }
-// -------------------------------------------
-
-// Створює картку країни ---------------------------------------
 function createCountryCard(array) {
     const countryInfo = array[0];
     const { flag, name, capital, population, languages, } = countryInfo;
@@ -80,28 +65,22 @@ function createCountryCard(array) {
 
 function insertCountryCard(array) {
     const countryCard = createCountryCard(array);
-    // cleanerListCountry();
         card.innerHTML = countryCard;
 }
-// --------------------------------------------------------
 
-
-// Создает разметку списка поиска -----------
 function createSarchItem(item) {
     return `
     <li class="country-item"><img class="country-flag" src="${item.flag}" alt="Country flag" width="30"><span>${item.name}</span></li>`;
 }
 
 function createSarchList(array) {
-return array.reduce((acc, item) => acc + createSarchItem(item), "")
+    return array.reduce((acc, item) => acc + createSarchItem(item), "")
 }
 
 function insertList(array) {
-        // cleanerCardCountry();
-        const sarchList = createSarchList(array);
-        list.innerHTML = sarchList;
+    const sarchList = createSarchList(array);
+    list.innerHTML = sarchList;
 }
-// --------------------------------
 
 function notFound() {
     Notiflix.Notify.failure('Oops, there is no country with that name');
