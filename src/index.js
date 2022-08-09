@@ -20,10 +20,7 @@ function onInputListener(e) {
         fetchCountries(name)
         .then(sarchAnswer)
             .catch(error => {
-                if
-                    // (error === 404) {
-                    (error.status === 404) {
-                    console.log(error.status);
+                if (error.code === 404) {
                     notFound();
                 } else {
                     Notiflix.Notify.failure('Unknow error');
@@ -39,11 +36,9 @@ function sarchAnswer(array) {
         largeSarchResult();
     } else if (array.length >= 2 && array.length <= 10) {
             insertList(array);
-    } else if (array.length === 1) {
-        insertCountryCard(array);
     } else {
-        notFound();
-    }
+        insertCountryCard(array);
+    } 
 }      
 
 function largeSarchResult() {
