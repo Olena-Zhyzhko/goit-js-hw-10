@@ -20,12 +20,15 @@ function onInputListener(e) {
         fetchCountries(name)
         .then(sarchAnswer)
             .catch(error => {
-                if (error.status === 404) {
+                if
+                    // (error === 404) {
+                    (error.status === 404) {
                     console.log(error.status);
                     notFound();
                 } else {
-                    console.log(error);
+                    Notiflix.Notify.failure('Unknow error');
                 }
+                cleanerCountryResult();
         });
 }
 }

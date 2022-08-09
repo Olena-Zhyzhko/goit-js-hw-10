@@ -4,6 +4,7 @@ function fetchCountries(name) {
     return fetch(`${URL}${name}?fields=name,capital,population,flag,languages`)
         .then(response => {
             if (!response.ok) {
+                // throw new Error(response);
                 const error = new Error();
                 error.code = response.status;
                 return error;
